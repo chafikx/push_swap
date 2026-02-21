@@ -35,7 +35,15 @@ t_stack_node	*find_highest(t_stack_node *stack);
 t_stack_node	*find_smallest(t_stack_node *stack);
 void			set_current_position(t_stack_node *stack);
 void			set_target_b(t_stack_node *a, t_stack_node *b);
+void			cost_analysis_b(t_stack_node *a, t_stack_node *b);
+void			set_cheapest(t_stack_node *stack);
+t_stack_node	*get_cheapest(t_stack_node *stack);
+
+//	EXECUTION ALGORITHME
+void			prep_for_push(t_stack_node **s, t_stack_node *n, char name);
+void			move_b_to_a(t_stack_node **a, t_stack_node **b);
 void			sort_three(t_stack_node **a);
+void			sort_stacks(t_stack_node **a, t_stack_node **b);
 
 //	MOUVEMENTS
 void			sa(t_stack_node **a);

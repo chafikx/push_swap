@@ -56,3 +56,46 @@ void	set_target_b(t_stack_node *a, t_stack_node *b)
 		b = b->next;
 	}
 }
+
+void	cost_analysis_b(t_stack_node *a, t_stack_node *b)
+{
+	int	len_a;
+	int	len_b;
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	while (b)
+	{
+		b->push_cost = b->current_pos;
+		if (b->current_pos > len_b / 2)
+			b->push_cost = len_b - (b->current_pos);
+		if (b->target_node->current_pos > len_a / 2)
+			b->push_cost += len_a - (b->target_node->current_pos);
+		else
+			b->push_cost += b->target_node->current_pos;
+		b = b->next;
+	}
+}
+
+void	set_cheapest(t_stack_node *stack)
+{
+	long			cheapest_value;
+	t_stack_node	*cheapest_node;
+
+	if (!stack)
+		return ;
+	cheapest_value = LONG_MAX;
+	cheapest_node = NULL;
+	while (stack)
+	{
+		stack->cheapest = 0;
+		if (stack->push_cost < cheapest_value)
+		{
+			cheapest_value = stack->push_cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	if (cheapest_node)
+		cheapest_node->cheapest = 1;
+}
