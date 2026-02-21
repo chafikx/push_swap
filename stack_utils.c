@@ -12,6 +12,9 @@ void	append_node(t_stack_node **stack, int n)
 		return ;
 	new_node->value = n;
 	new_node->next = NULL;
+	new_node->cheapest = 0;
+	new_node->push_cost = 0;
+	new_node->target_node = NULL;
 	if (*stack == NULL)
 	{
 		*stack = new_node;

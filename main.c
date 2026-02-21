@@ -3,10 +3,12 @@
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
+	t_stack_node	*b;
 	char			**args;
 	int				is_allocated;
 
 	a = NULL;
+	b = NULL;
 	is_allocated = 0;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
@@ -26,6 +28,8 @@ int	main(int argc, char **argv)
 			sa(&a);
 		else if (a->next != NULL && a->next->next != NULL && a->next->next->next == NULL)
 			sort_three(&a);
+		else
+			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
 	return (0);

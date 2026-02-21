@@ -1,11 +1,11 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "libft/libft.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-//	STRUCTURE
 typedef struct s_stack_node
 {
 	int					value;
@@ -16,19 +16,16 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 }	t_stack_node;
 
-//	PARSING & INIT
 long			ft_atol(const char *str);
 int				error_syntax(char *str_n);
 int				error_duplicate(t_stack_node *a, int n);
 void			init_stack_a(t_stack_node **a, char **argv, int is_allocated);
 void			append_node(t_stack_node **stack, int n);
 
-//	FREE & SECURITE
 void			free_stack(t_stack_node **stack);
 void			free_errors(t_stack_node **a, char **argv);
 void			free_matrix(char **argv);
 
-//	OUTILS ALGORITHME
 int				is_sorted(t_stack_node *stack);
 int				stack_len(t_stack_node *stack);
 t_stack_node	*find_highest(t_stack_node *stack);
@@ -39,13 +36,11 @@ void			cost_analysis_b(t_stack_node *a, t_stack_node *b);
 void			set_cheapest(t_stack_node *stack);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 
-//	EXECUTION ALGORITHME
 void			prep_for_push(t_stack_node **s, t_stack_node *n, char name);
 void			move_b_to_a(t_stack_node **a, t_stack_node **b);
 void			sort_three(t_stack_node **a);
 void			sort_stacks(t_stack_node **a, t_stack_node **b);
 
-//	MOUVEMENTS
 void			sa(t_stack_node **a);
 void			sb(t_stack_node **b);
 void			ss(t_stack_node **a, t_stack_node **b);

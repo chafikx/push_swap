@@ -17,9 +17,11 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	free_errors(t_stack_node **a)
+void	free_errors(t_stack_node **a, char **argv)
 {
 	free_stack(a);
+	if (argv != NULL)
+		free_matrix(argv);
 	write(2, "Error\n", 6);
 	exit(1);
 }
