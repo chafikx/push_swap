@@ -6,7 +6,7 @@
 /*   By: chbenhiz <chbenhiz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 22:55:42 by chbenhiz          #+#    #+#             */
-/*   Updated: 2026/02/26 23:04:57 by chbenhiz         ###   ########.fr       */
+/*   Updated: 2026/02/26 23:30:29 by chbenhiz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,20 @@ void	prep_for_push(t_stack_node **s, t_stack_node *n, char name)
 	}
 }
 
+static void	rotate_both(t_stack_node **a, t_stack_node **b,
+						t_stack_node *cheapest_node, int reverse)
+{
+	while (*b != cheapest_node && *a != cheapest_node->target_node)
+	{
+		if (reverse)
+			rrr(a, b);
+		else
+			rr(a, b);
+		set_current_position(*a);
+		set_current_position(*b);
+	}
+}
+
 void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_node;
@@ -54,24 +68,10 @@ void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 	cheapest_node = get_cheapest(*b);
 	if (cheapest_node->current_pos <= (stack_len(*b) / 2)
 		&& cheapest_node->target_node->current_pos <= (stack_len(*a) / 2))
-	{
-		while (*b != cheapest_node && *a != cheapest_node->target_node)
-		{
-			rr(a, b);
-			set_current_position(*a);
-			set_current_position(*b);
-		}
-	}
+		rotate_both(a, b, cheapest_node, 0);
 	else if (cheapest_node->current_pos > (stack_len(*b) / 2)
 		&& cheapest_node->target_node->current_pos > (stack_len(*a) / 2))
-	{
-		while (*b != cheapest_node && *a != cheapest_node->target_node)
-		{
-			rrr(a, b);
-			set_current_position(*a);
-			set_current_position(*b);
-		}
-	}
+		rotate_both(a, b, cheapest_node, 1);
 	prep_for_push(a, cheapest_node->target_node, 'a');
 	prep_for_push(b, cheapest_node, 'b');
 	pa(a, b);

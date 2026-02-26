@@ -5,12 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chbenhiz <chbenhiz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 22:55:19 by chbenhiz          #+#    #+#             */
-/*   Updated: 2026/02/26 23:06:12 by chbenhiz         ###   ########.fr       */
+/*   Created: 2026/02/26 23:30:46 by chbenhiz          #+#    #+#             */
+/*   Updated: 2026/02/26 23:30:47 by chbenhiz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	push_swap(t_stack_node **a, t_stack_node **b)
+{
+	if (!is_sorted(*a))
+	{
+		if ((*a)->next != NULL && (*a)->next->next == NULL)
+			sa(a);
+		else if ((*a)->next != NULL && (*a)->next->next != NULL
+			&& (*a)->next->next->next == NULL)
+			sort_three(a);
+		else
+			sort_stacks(a, b);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -34,16 +48,7 @@ int	main(int argc, char **argv)
 	init_stack_a(&a, args, is_allocated);
 	if (is_allocated)
 		free_matrix(args);
-	if (!is_sorted(a))
-	{
-		if (a->next != NULL && a->next->next == NULL)
-			sa(&a);
-		else if (a->next != NULL && a->next->next != NULL
-			&& a->next->next->next == NULL)
-			sort_three(&a);
-		else
-			sort_stacks(&a, &b);
-	}
+	push_swap(&a, &b);
 	free_stack(&a);
 	return (0);
 }
