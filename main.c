@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chbenhiz <chbenhiz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/26 22:55:19 by chbenhiz          #+#    #+#             */
+/*   Updated: 2026/02/26 23:06:12 by chbenhiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -26,7 +38,8 @@ int	main(int argc, char **argv)
 	{
 		if (a->next != NULL && a->next->next == NULL)
 			sa(&a);
-		else if (a->next != NULL && a->next->next != NULL && a->next->next->next == NULL)
+		else if (a->next != NULL && a->next->next != NULL
+			&& a->next->next->next == NULL)
 			sort_three(&a);
 		else
 			sort_stacks(&a, &b);

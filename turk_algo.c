@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   turk_algo.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chbenhiz <chbenhiz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/26 22:55:42 by chbenhiz          #+#    #+#             */
+/*   Updated: 2026/02/26 23:04:57 by chbenhiz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack_node	*get_cheapest(t_stack_node *stack)
@@ -40,8 +52,8 @@ void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 	t_stack_node	*cheapest_node;
 
 	cheapest_node = get_cheapest(*b);
-	if (cheapest_node->current_pos <= (stack_len(*b) / 2) && 
-		cheapest_node->target_node->current_pos <= (stack_len(*a) / 2))
+	if (cheapest_node->current_pos <= (stack_len(*b) / 2)
+		&& cheapest_node->target_node->current_pos <= (stack_len(*a) / 2))
 	{
 		while (*b != cheapest_node && *a != cheapest_node->target_node)
 		{
@@ -50,8 +62,8 @@ void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 			set_current_position(*b);
 		}
 	}
-	else if (cheapest_node->current_pos > (stack_len(*b) / 2) && 
-			 cheapest_node->target_node->current_pos > (stack_len(*a) / 2))
+	else if (cheapest_node->current_pos > (stack_len(*b) / 2)
+		&& cheapest_node->target_node->current_pos > (stack_len(*a) / 2))
 	{
 		while (*b != cheapest_node && *a != cheapest_node->target_node)
 		{
